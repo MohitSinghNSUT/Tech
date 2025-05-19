@@ -22,13 +22,27 @@ const Reducer = (state = initialState, action) => {
             return state
     }
 }
-const store= createStore(Reducer)
+export const store= createStore(Reducer)
 console.log(store)
 console.log(store.getState())
-store.dispatch({ type: 'INCREMENT', payload: { id: 1, name: 'Task 1' } })
+const incrementAction = (data)=>{
+    return {
+        type: 'INCREMENT',
+        payload: data
+    }
+}
+const decrementAction = (data)=>{
+    return {
+        type: 'DECREMENT',
+        payload: data
+    }
+}
+
+store.dispatch(incrementAction({ id: 1, name: 'Task 1' }))
 console.log(store.getState())
-store.dispatch({ type: 'INCREMENT', payload: { id: 2, name: 'Task 2' } })
+store.dispatch(incrementAction({ id: 2, name: 'Task 2' }))
 console.log(store.getState())
-store.dispatch({ type: 'DECREMENT', payload: { id: 1 } })
+store.dispatch(decrementAction({ id: 1 }))
 console.log(store.getState())
+
 export default Reducer
